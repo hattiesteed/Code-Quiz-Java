@@ -1,0 +1,12 @@
+:root{
+    background-color:rgb(255, 230, 242)
+}
+
+.container{
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 0 auto;
+width: 50pc;
+height: 15pc;
+}
