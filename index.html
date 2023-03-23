@@ -6,37 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Code Quiz Challenge</title>
     <link rel="stylesheet" href="./Assets/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- copied font from google fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Sono:wght@500&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
     <div class="container">
+<!-- homepage to start the quiz -->
         <div id="homepage">
             <h1>Do You Know JavaScript Fundamentals?</h1>
             <h2>Lets find out!</h2>
-        <button id="startbtn">Start Code Quiz</button>
-        <button id="btn">High Scores</button>
+        <button id="startbtn">START QUIZ</button>
+        <button id="homepageHighScore" onclick="showHighScore()"> HIGH SCORES</button>
     </div>
 
-    <div id="quiz">
-        <div id="timer">Time left: </div>
-        <div id="questions"></div>
+        <div id="quiz">
+            <div id="timer">Time left: </div>
+            <div id="questions">
+                <!-- when you click on answer it will tell you the result -->
+            <p>Questions</p>     
+            </div>
+                <button id="a" onclick="checkAnswer ('a')">A</button>
+                <button id="b" onclick="checkAnswer ('b')">B</button>
+                <button id="c" onclick="checkAnswer ('c')">C</button>
+                <button id="d" onclick="checkAnswer ('d')">D</button>
+                <div id="result"></div>
     </div>
+    <!-- After the game page -->
+        <div id="gameover"></div>
 
-
-
-
-
-
-
-
-
-
-
+        <score id="finalScore"></score>
+        <input type="text" size="55" placeholder="Enter your intials for high score!" name="initials"/>
+        <button id="clearHighscore" onclick="clearScore()">CLEAR HIGHSCORES</button>
     </div>
-
-
-
-
 
 
 <script src="./Assets/script.js"></script>

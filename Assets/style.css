@@ -10,3 +10,15 @@ margin: 0 auto;
 width: 50pc;
 height: 15pc;
 }
+
+button {
+    display:inline-block;
+    /* copied font from googlefonts */
+    font-family: 'Sono', sans-serif;
+    background-color: #F0B3DA;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 10px;
+    width:fit-content;
+    margin-top: 5px;
+}
