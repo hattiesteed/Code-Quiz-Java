@@ -7,8 +7,9 @@ display: flex;
 justify-content: center;
 align-items: center;
 margin: 0 auto;
+/* google said to use pc sizing instead of pixels to get it centered correctly */
 width: 50pc;
-height: 15pc;
+height: 30pc;
 }
 
 button {
@@ -17,8 +18,39 @@ button {
     font-family: 'Sono', sans-serif;
     background-color: #F0B3DA;
     border-radius: 5px;
-    padding: 15px;
+    padding: 12px;
     font-size: 10px;
     width:fit-content;
     margin-top: 5px;
+}
+
+#initals {
+    margin: auto;
+    height: 1.7rem;
+}
+button:hover {
+    box-shadow: 5px 2px #F2638C
+}
+
+#startpage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#quiz {
+    display: block;
+}
+
+#gameover {
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+#endGameBtns{
+    display: none;
 }

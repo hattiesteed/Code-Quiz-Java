@@ -4,13 +4,17 @@ var buttonB = document.getElementById('b');
 var buttonC = document.getElementById('c');
 var buttonD = document.getElementById('d');
 var startButton = document.getElementById('startbtn');
-var finalScoreE1 = document.getElementById("finalScore");
+var questionsEl = document.getElementById("questions")
+var finalScoreEl = document.getElementById("finalScore");
 var quizTimer = document.getElementById("timer");
+var gameOver = document.getElementById("gameover");
+var highscoreInputName = document.getElementById("initials");
+var highscoreDisplayName = document.getElementById("highscore-initials")
 
 
 // other variables
 var currentQuestion = quizQuestion[currentQuestionIndex];
-
+var endGameBtn = document.getElementById("endGameBtns")
 // Quiz questions
 var Questions = [{
     question:"Keydown is when...?",
@@ -56,11 +60,36 @@ var Questions = [{
 
 // Function goes through the array containing the quiz questions to generate questions and the answers/
     function generateQuizQuestion(){
-        gameoverDiv.style.display = "none";
+        gameOver.style.display = "none";
         if (currentQuestionIndex === finalQuestionIndex){
             return showScore();
         }
-        
-    }
+        questionsE1.innerHTML = "<p>" + currentQuestion.question + "</p>";
+        buttonA.innerHTML = currentQuestion.choiceA;
+        buttonB.innerHTML = currentQuestion.choiceB;
+        buttonC.innerHTML = currentQuestion.choiceC;
+        buttonD.innterHTML = currentQuestion.choiceD;
+    };
+// Start Quiz function starts the time, hides the start button, shows the first question
+    function startQuiz(){
+        gameOver.style.display = "none";
+        startQuizDiv.style.display = "none";
+        generateQuizQuestion();
+
+        // the timer
+        timerInteral = setInterval(function)( { 
+            timeLeft--;
+            quizTimer.textContent = "Time left: " + timeLeft;
+
+            if(timeLeft === 0) {
+                clearInterval(timerInterval);
+                showScore();
+        }
+    }, 1000);
+    quizBody.style.display = "block";
+}
+// end page displays score after finishing the quiz or if u ran out of time
+
+
 
 
