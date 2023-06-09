@@ -24,6 +24,10 @@ button {
     margin-top: 5px;
 }
 
+input{
+    text-align:center;
+}
+
 #initals {
     margin: auto;
     height: 1.7rem;
@@ -44,6 +48,7 @@ button:hover {
     padding-bottom: .3rem;
     border-bottom-style: groove;
 }
+
 #high-scorePage{
     border: solid;
     background:rgb(255, 230, 242);
