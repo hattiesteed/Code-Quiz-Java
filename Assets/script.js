@@ -1,20 +1,27 @@
 // elements from the HTML
-var buttonA = document.getElementId ('a');
+var buttonA = document.getElementId('a');
 var buttonB = document.getElementById('b');
 var buttonC = document.getElementById('c');
 var buttonD = document.getElementById('d');
+var homePage = document.getElementById('homePage');
+var resultsPage = document.getElementById('quiz-results');
+var quizPage = document.getElementById('quiz');
 var startButton = document.getElementById('startbtn');
-var questionsEl = document.getElementById("questions")
-var finalScoreEl = document.getElementById("finalScore");
+var questions = document.getElementById("questions")
+var finalScore = document.getElementById("final-score");
 var quizTimer = document.getElementById("timer");
 var gameOver = document.getElementById("gameover");
 var highscoreInputName = document.getElementById("initials");
-var highscoreDisplayName = document.getElementById("highscore-initials")
+var highscoreDisplayScore = document.getElementById('highscores-score');
+var highscoreDisplayName = document.getElementById("highscore-initials");
+var highscoreContainer = document.getElementById("highscore-container");
+var highScorePage = document.getElementById("highScorePage");
+var endGameBtn = document.getElementById("endGameBtns");
+var submitScoreBtn = document.getElementById("submit");
 
 
-// other variables
-var currentQuestion = quizQuestion[currentQuestionIndex];
-var endGameBtn = document.getElementById("endGameBtns")
+startButton.addEventListener("click", startQuiz);
+
 // Quiz questions
 var Questions = [{
     question:"Keydown is when...?",
@@ -58,18 +65,29 @@ var Questions = [{
     correctAnswer: "c" },
 ];
 
+var finalQuestionIndex = quizQuestion.length;
+var currentQuestionIndex = 0;
+var timerInterval;
+var score = 0;
+var timeLeft = 100;
+var correct;
+
 // Function goes through the array containing the quiz questions to generate questions and the answers/
     function generateQuizQuestion(){
         gameOver.style.display = "none";
         if (currentQuestionIndex === finalQuestionIndex){
             return showScore();
         }
+        var currentQuestion = quizQuestion[currentQuestionIndex];
         questionsE1.innerHTML = "<p>" + currentQuestion.question + "</p>";
         buttonA.innerHTML = currentQuestion.choiceA;
         buttonB.innerHTML = currentQuestion.choiceB;
         buttonC.innerHTML = currentQuestion.choiceC;
         buttonD.innterHTML = currentQuestion.choiceD;
     };
+
+
+
 // Start Quiz function starts the time, hides the start button, shows the first question
     function startQuiz(){
         gameOver.style.display = "none";
@@ -77,7 +95,7 @@ var Questions = [{
         generateQuizQuestion();
 
         // the timer
-        timerInteral = setInterval(function)( { 
+        timerInteral = setInterval(function() { 
             timeLeft--;
             quizTimer.textContent = "Time left: " + timeLeft;
 
@@ -89,7 +107,91 @@ var Questions = [{
     quizBody.style.display = "block";
 }
 // end page displays score after finishing the quiz or if u ran out of time
+function showScore(){
+    quizBody.style.display = "none"
+    gameOver.style.display = "flex";
+    clearInterval (timerInterval);
+    highscoreInputName.value = "";
+    finalScoreEl.innerHTML = "Your score " + score + " out of " + quizQuestion.length + "correct";
+}
 
+// Run function highscore that saves the array of high scores and pushes new username and score into the array on local storage.
+submitScoreBtn.addEventListener("click", function highscore(){
 
+    if(highscoreInputName.value === ""){
+        alert("Initials cannot be blank");
+        return false; }
+    else{
+        var savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
+        var currentUser = highscoreInputName.value.trim();
+        var curentHighscore = {
+            name : currentUser,
+            score : score
+        };
+        gameOver.style.display = "none";
+        highscoreContainer.style.display = "flex";
+        highscore.style.display = "block";
+        endGameBtn.style.display = "flex";
+            savedHighscores.push(currentHighscore);
+        localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
+        generateHighscores();
+    }
+});
 
+// this will clear the list for the high scores and make anew high score list from the local storage
+function generateHighscores(){
+    highscoreDisplayName.innerHTML = "";
+    highscoreDisplayName.inert = "";
+    var highscore = JSON.parse(localStorage.getItem("savedHighsocre")) || [];
+    for (i=0; i<highscoreDisplayName.length; i++){
+        var newName = document.createElement("li");
+        var newScore = document.createElement("li");
+        newName.textContent = highscores[i].name;
+        newScore.textContent = highscores[i].score;
+        highscoreDisplayName.appendChild(newName);
+        highscoreDisplayScore.appendChild(newScore);
+    }
+}
+// displays the high scores page while hiding all pages
+function showHighscore(){
+    startQuiz.style.display = "none"
+    highscoreContainer.style.display = "flex";
+    gameOver.style.display = "none";
+    highscore.style.display = "block";
+    endGameBtn.style.display = "flex";
+    generateHighscores();
+}
+
+// clears the local storage of the high scores as well as clearing the text from the high score board
+function clearScore(){
+    window.localStorage.clear();
+    highscoreDisplayName.textContent = "";
+    highscoreDisplayScore.textContent = "";
+}
+
+function replayQuiz(){
+    highscoreContainer.style.display = "none";
+    gameOver.style.display = "none";
+    homePage.style.display = "flex";
+    score = 0;
+    currentQuestionIndex = 0;
+    timeLeft = 100;
+}
+// correct answer   
+function checkAnswer(answer){
+    correct = quizQuestion[currentQuestionIndex].correctAnswer;
+    if (answer === correct && currentQuestionIndex !== finalQuestionIndex){
+        score++;
+        alert("Yay! Correct!");
+        currentQuestionIndex++;
+        generateQuizQuestion();
+    }else if (answer !== correct && currentQuestionIndex !== finalQuestionIndex){
+        alert("Wrong.")
+        currentQuestionIndex++;
+        generateQuizQuestion();
+        // results div that your answer is incorrect
+    }else{
+        showScore();
+    }
+    }
 
