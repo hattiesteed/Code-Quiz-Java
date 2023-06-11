@@ -12,6 +12,21 @@ width: 50pc;
 height: 30pc;
 }
 
+
+h1{
+    text-align: center;
+}
+
+h2{
+    font-size: x-large;
+    text-align: center;
+}
+
+p{
+    text-shadow: #F2638C;
+    font-size: x-large;
+}
+
 button {
     display:inline-block;
     /* copied font from googlefonts */
@@ -23,7 +38,9 @@ button {
     width:fit-content;
     margin-top: 5px;
 }
-
+button:hover {
+    box-shadow: 5px 2px #F2638C
+}
 input{
     text-align:center;
 }
@@ -32,11 +49,8 @@ input{
     margin: auto;
     height: 1.7rem;
 }
-button:hover {
-    box-shadow: 5px 2px #F2638C
-}
 
-#startpage {
+#homePage {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,18 +69,24 @@ button:hover {
 
 }
 #quiz {
-    display: block;
+    display: none;
 }
-
+#timer{
+    text-align: center;
+    font-size: larger;
+    padding: 30px;
+}
 #gameover {
     text-align: center;
     display: none;
     flex-direction: column;
     align-items: center;
+    text-shadow: #F2638C;
 }
 
 
 
 #endGameBtns{
     display: none;
+    justify-content: center;
 }
