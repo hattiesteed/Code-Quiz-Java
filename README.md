@@ -7,5 +7,4 @@
 5. Quiz ends when timer is out or all questions are answered
 
 ## Link to Deployed Application
-
-# Screenshot Preview of Project
+https://hattiesteed.github.io/Code-Quiz-Java/
